@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "private": true,
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
+    "@hotwired/turbo-rails": "^8.0.4",
+    "autoprefixer": "^10.4.19",
+    "esbuild": "^0.21.1",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  },
+  "scripts": {
+    "build:dev": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds --watch",
+    "build:prod": "esbuild app/javascript/application.js --bundle --outdir=app/assets/builds --minify",
+    "build:css-dev": "tailwindcss -o ./app/assets/builds/application.css --watch",
+    "build:css-prod": "tailwindcss -o ./app/assets/builds/application.css --minify",
+    
+    "build": "if [ \"$NODE_ENV\" = \"production\" ]; then yarn run build:prod; else yarn run build:dev; fi",
+    "build:css": "if [ \"$CSS_ENV\" = \"production\" ]; then yarn run build:css-prod; else yarn run build:css-dev; fi"
+  }
+}

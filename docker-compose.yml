@@ -1,0 +1,33 @@
+services:
+  db:
+    image: postgres
+    volumes:
+      - ./db/postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: password
+  web:
+    build: .
+    command: >
+        /bin/sh -c '
+          rm /app/tmp/pids/server.pid &&
+          yarn build:compose-up || (echo "\nSkipping build:compose-up because the script is not defined in package.json." &&
+          echo "Define like this as follows:" &&
+          echo "\"build:compose-up\": \"esbuild app/javascript/application.js --bundle --outdir=app/assets/builds\"\n") &&
+          yarn build:compose-up:css || (echo "\nSkipping build:compose-up:css because the script is not defined in package.json." &&
+          echo "Define like this as follows:" &&
+          echo "\"build:compose-up:css\": \"build:compose-up:css\": \"tailwindcss -o ./app/assets/builds/application.css\"\n") &&
+          bundle exec rails s -p 3000 -b "0.0.0.0"'
+    volumes:
+      - .:/app
+      - bundle_data:/app/vendor/bundle
+    environment:
+      - NODE_ENV=development
+      - CSS_ENV=development
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+volumes:
+  postgres_data:
+  bundle_data:
+  node_modules:
