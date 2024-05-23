@@ -8,5 +8,5 @@ class User < ApplicationRecord
 
   # User ++--⑥--+∈ UserSchedule ∋+--⑤--++ Schedule
   has_many :user_schedules
-  has_maby :schedules, through: :user_schedules
+  has_many :schedules, through: :user_schedules
 end
