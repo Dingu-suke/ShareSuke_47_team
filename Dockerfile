@@ -24,9 +24,9 @@ RUN bundle install \
   && yarn build:css
 
 # エントリポイントスクリプトを設定
-COPY entrypoint.sh ./app/bin/
-RUN chmod +x bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+COPY bin/entrypoint.sh /app/bin/
+RUN chmod +x /app/bin/entrypoint.sh
+ENTRYPOINT ["/app/bin/entrypoint.sh"]
 
 EXPOSE 3000
 # アプリケーションの残りの部分をコピー
