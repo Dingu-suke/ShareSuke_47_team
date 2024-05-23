@@ -1,8 +1,9 @@
 class UserSchedule < ApplicationRecord
-  # UserSchedule ∋+--⑥--++ User
-  belongs_to :user
+  # 中間モデル
   
-  # UserSchedule ∋+--⑤--++ Schedule
+  # UserSchedule ∋+--⑥--++ User
+  #              ∋+--⑤--++ Schedule
+  belongs_to :user
   belongs_to :schedule
 
   # ユニークバリデーション

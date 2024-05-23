@@ -1,8 +1,9 @@
 class Comment < ApplicationRecord
+  # 中間モデル
+  
   # Comment ∋o--①--++ User
+  #         ∋o--②--++ Event
   belongs_to :user
-
-  # Comment ∋o--②--++ Event
   belongs_to :event
 
   # ユニークバリデーション
