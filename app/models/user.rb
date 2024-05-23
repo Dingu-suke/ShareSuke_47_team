@@ -1,12 +1,12 @@
 class User < ApplicationRecord
-  # User ++--③--+∈ Event
+  # User ∋o--③--++ Event
   belongs_to :event
 
-  # User ++--①--+∈ Comment ∋+--②--++ Event
+  # User ++--①--o∈ Comment ∋o--②--++ Event
   has_many :comments
   has_many :events, through: :comment
 
-  # User ++--⑥--+∈ UserSchedule ∋+--⑤--++Schedule
+  # User ++--⑥--+∈ UserSchedule ∋+--⑤--++ Schedule
   has_many :user_schedules
   has_maby :schedules, through: :user_schedules
 end

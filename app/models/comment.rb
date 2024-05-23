@@ -1,8 +1,8 @@
 class Comment < ApplicationRecord
-  # Comment ∋+--①--++ User
+  # Comment ∋o--①--++ User
   belongs_to :user
 
-  # Comment ∋+--②--++ Event
+  # Comment ∋o--②--++ Event
   belongs_to :event
 
   # ユニークバリデーション
