@@ -24,7 +24,7 @@ RUN bundle install \
   && yarn build:css
 
 # エントリポイントスクリプトを設定
-COPY entrypoint.sh /usr/bin/
+COPY entrypoint.sh ./app/bin/
 RUN chmod +x bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
