@@ -21,8 +21,6 @@ COPY package.json yarn.lock ./
 RUN bundle install \
   && yarn install
 
-# アプリケーションのソースコードをコピー
-
 # エントリポイントスクリプトを設定
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
@@ -31,9 +29,5 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 # アプリケーションの残りの部分をコピー
 COPY . .
-
-RUN yarn build \
-  && yarn build:css \
-  && yarn build
 
 CMD ["rails", "server", "-b", "0.0.0.0"]
