@@ -17,8 +17,11 @@ ENV TZ Asia/Tokyo
 COPY Gemfile Gemfile.lock /app/
 RUN bundle config --local set path 'vendor/bundle' \
   && bundle install
-COPY yarn.lock /app/yarn.lock
-RUN bundle install
+COPY package.json yarn.lock ./
+RUN bundle install \
+  && yarn install
+
+# アプリケーションのソースコードをコピー
 
 # エントリポイントスクリプトを設定
 COPY entrypoint.sh /usr/bin/
@@ -28,4 +31,8 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 # アプリケーションの残りの部分をコピー
 COPY . /app
+
+RUN yarn build \
+  && yarn build:css
+
 CMD ["rails", "server", "-b", "0.0.0.0"]
