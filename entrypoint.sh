@@ -10,6 +10,7 @@ CSS_ENV=production yarn build:css
 RAILS_ENV=production bundle exec rails assets:clobber
 RAILS_ENV=production bundle exec rails assets:precompile
 RAILS_ENV=production bundle exec rails assets:clean
+RAILS_ENV=production bundle exec rails db:create
 RAILS_ENV=production bundle exec rails db:migrate
 
 bundle exec ridgepole -c config/database.yml -E production --apply -f db/schemas/Schemafile
