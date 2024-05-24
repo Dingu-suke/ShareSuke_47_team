@@ -19,9 +19,7 @@ RUN bundle config --local set path 'vendor/bundle' \
   && bundle install
 COPY package.json yarn.lock ./
 RUN bundle install \
-  && yarn install \
-  && yarn build \
-  && yarn build:css
+  && yarn install
 
 # エントリポイントスクリプトを設定
 COPY entrypoint.sh /usr/bin/
