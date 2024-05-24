@@ -21,10 +21,11 @@ COPY yarn.lock /app/yarn.lock
 RUN bundle install
 
 # エントリポイントスクリプトを設定
-COPY entrypoint.sh /app/bin/
-RUN chmod +x /app/bin/entrypoint.sh
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
 # アプリケーションの残りの部分をコピー
 COPY . /app
+CMD ["rails", "server", "-b", "0.0.0.0"]
