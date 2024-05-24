@@ -18,12 +18,12 @@ COPY Gemfile Gemfile.lock /app/
 RUN bundle config --local set path 'vendor/bundle' \
   && bundle install
 COPY yarn.lock /app/yarn.lock
-RUN bundle install \
+RUN bundle install
 
 # エントリポイントスクリプトを設定
-COPY bin/entrypoint.sh /app/bin/
+COPY entrypoint.sh /app/bin/
 RUN chmod +x /app/bin/entrypoint.sh
-ENTRYPOINT ["/app/bin/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3000
 # アプリケーションの残りの部分をコピー
