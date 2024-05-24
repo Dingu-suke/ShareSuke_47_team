@@ -19,7 +19,6 @@ RUN bundle config --local set path 'vendor/bundle' \
   && bundle install
 COPY yarn.lock /app/yarn.lock
 RUN bundle install \
-  && yarn install \
   && yarn build \
   && yarn build:css
 
